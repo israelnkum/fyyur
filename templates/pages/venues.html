@@ -1,0 +1,22 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur | Venues{% endblock %}
+{% block content %}
+    {% for area in areas %}
+        <h3>{{ area.city }}, {{ area.state }}</h3>
+        <ul class="items">
+            {% for venue in area.venues %}
+                <li class="list-group-item" style="display: flex; justify-content: space-between; align-items: center">
+                    <a href="/venues/{{ venue.id }}">
+                        <i class="fas fa-music"></i>
+                        <div class="item">
+                            <h5>{{ venue.name }}</h5>
+                        </div>
+                    </a>
+                    <form onsubmit="return confirm('Sure to Delete?')" action="/venues/{{ venue.id }}" method="POST">
+                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+{% endblock %}
