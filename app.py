@@ -86,7 +86,7 @@ def get_artists_shows(artist_id, upcoming=True):
             "venue_id": item.Venue.id,
             "venue_name": item.Venue.name,
             "venue_image_link": item.Venue.image_link,
-            "start_time": str(item['Show'].start_date_time)
+            "start_time": str(item['0'].start_date_time)
         })
 
     res = dict()
@@ -110,7 +110,7 @@ def get_venue_shows(venue_id, upcoming=True):
             "artist_id": item['Artist'].id,
             "artist_name": item['Artist'].name,
             "artist_image_link": "https://images.unsplash.com/photo-1558369981-f9ca78462e61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=794&q=80",
-            "start_time": str(item['Show'].start_date_time),
+            "start_time": str(item['1'].start_date_time),
         })
 
     res = dict()
@@ -589,13 +589,13 @@ def shows():
     data = []
     for item in all_shows:
         data.append({
-            "venue_id": item['Venue'].id,
-            "venue_name": item['Venue'].name,
-            "artist_id": item['Artist'].id,
-            "artist_name": item['Artist'].name,
-            "artist_image_link": 'https://images.unsplash.com/photo-1549213783-8284d0336c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
-            # "artist_image_link": data['Artist'].image_link,
-            "start_time": str(item['Show'].start_date_time),
+            "venue_id": item['2'].id,
+            "venue_name": item['2'].name,
+            "artist_id": item['1'].id,
+            "artist_name": item['1'].name,
+            # "artist_image_link": 'https://images.unsplash.com/photo-1549213783-8284d0336c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80',
+            "artist_image_link": data['1'].image_link,
+            "start_time": str(item['0'].start_date_time),
         })
 
     return render_template('pages/shows.html', shows=data)
